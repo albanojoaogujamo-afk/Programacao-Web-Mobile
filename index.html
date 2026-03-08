@@ -4,8 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabalho PWM 01</title>
+    <style>
+        /*Nessa parte do codigo, estou definindo o estilo do corpo da página, como a fonte, cor de fundo e margens. O objetivo é criar uma aparência agradável e legível para o conteúdo da página. */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            background-color: whitesmoke;
+            margin: 0px auto;
+            padding: 20px;  
+        }
+        /*Aqui, estou definindo o estilo para os títulos (h1) da página, como a cor e o alinhamento. O objetivo é destacar os títulos e torná-los visualmente atraentes. */
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+      .container {
+        /*Aqui, estou definindo o estilo para um contêiner (container) que pode ser usado para agrupar elementos relacionados, como um formulário ou uma seção de conteúdo. O objetivo é criar um layout organizado e visualmente agradável para os elementos dentro do contêiner. */
+    background: linear-gradient(135deg, #667eea 0%, #efeef0 100%);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    color: white;
+}
+label {
+    /*Aqui, estou definindo o estilo para os rótulos (labels) dos campos de entrada, como a cor, tamanho da fonte e espaçamento. O objetivo é tornar os rótulos claros e fáceis de ler, além de criar uma hierarquia visual entre os elementos da página. */
+    display: block;              
+    margin-bottom: 5px;          
+    font-weight: 600;            
+    color: #333;                 
+    font-size: 14px;             
+    text-transform: uppercase;    
+    letter-spacing: 0.5px;
+ }   
+ /*Aqui, estou definindo o estilo para os campos de entrada (input) e áreas de texto (textarea), como a largura, preenchimento, borda e arredondamento. O objetivo é criar campos de entrada visualmente agradáveis e fáceis de usar para os usuários. */
+ input[type="text"], 
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        /*Aqui, estou definindo o estilo para os botões (button), como a cor de fundo, cor do texto, preenchimento, borda e arredondamento. O objetivo é criar botões visualmente atraentes e fáceis de clicar para os usuários. Além disso, estou adicionando estilos de hover para melhorar a interatividade dos botões. */
+         button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        /*Aqui, estou definindo o estilo para os botões quando o usuário passa o mouse sobre eles (hover), como a cor de fundo. O objetivo é fornecer feedback visual aos usuários, indicando que o botão é interativo e pode ser clicado. */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.secundario {
+            background-color: #2196F3;
+        }
+        
+        button.secundario:hover {
+            background-color: #0b7dda;
+        }
+        
+        button.perigo {
+            background-color: #f44336;
+        }
+        
+        button.perigo:hover {
+            background-color: #da190b;
+        }
+        
+        /*Aqui, estou definindo o estilo para a tabela (table), como a largura, colapso de bordas e margem superior. O objetivo é criar uma tabela visualmente agradável e organizada para exibir os dados. */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #ddd;
+        }
+        
+        /*Aqui, estou definindo o estilo para as áreas de texto (textarea), como a capacidade de redimensionamento e a altura mínima. O objetivo é permitir que os usuários redimensionem a área de texto conforme necessário, enquanto mantém uma altura mínima para garantir que haja espaço suficiente para digitar mensagens ou informações. */
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    </style>
 </head>
 <body>
+  
+     <h1>Demonstração</h1>
+
+    <!-- SEÇÃO DO FORMULÁRIO -->
+    <div class="container">
+        <h2>Formulário de Cadastro</h2>
+        <form id="meuFormulario">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+            </div>
+            
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            </div>
+            
+            <div>
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem aqui..."></textarea>
+            </div>
+            
+            <!-- BOTÕES DO FORMULÁRIO -->
+            <button type="submit">Enviar Formulário</button>
+            <button type="reset" class="perigo">Limpar Formulário</button>
+        </form>
+    </div>
     
+    <!-- SEÇÃO DA TABELA -->
+    <div class="container">
+        <h2>Tabela de Exemplo</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>João Silva</td>
+                    <td>joao@email.com</td>
+                    <td>Ativo</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Maria Santos</td>
+                    <td>maria@email.com</td>
+                    <td>Ativo</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Pedro Oliveira</td>
+                    <td>pedro@email.com</td>
+                    <td>Inativo</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ana Costa</td>
+                    <td>ana@email.com</td>
+                    <td>Ativo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SEÇÃO DOS BOTÕES DE AÇÃO -->
+    <div class="container">
+        <h2>Botões de Ação</h2>
+        <button onclick="alert('Botão 1 clicado!')">Botão 1</button>
+        <button class="secundario" onclick="alert('Botão 2 clicado!')">Botão 2</button>
+        <button class="perigo" onclick="alert('Botão 3 clicado!')">Botão 3</button>
+
+        <!-- CAIXA DE TEXTO ADICIONAL -->
+        <div style="margin-top: 20px;">
+            <label for="caixaTexto">Caixa de Texto Extra:</label>
+            <input type="text" id="caixaTexto" placeholder="Digite algo aqui...">
+        </div>
+    </div>
 </body>
 </html>
