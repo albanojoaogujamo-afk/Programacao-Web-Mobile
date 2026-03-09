@@ -1,200 +1,496 @@
 <!DOCTYPE html>
-<html lang="PT-MZ">
+<html lang="Pt-MZ">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabalho PWM 01</title>
+    <title>Formulário de Inscrição - PWM</title>
     <style>
-        /*Nessa parte do codigo, estou definindo o estilo do corpo da página, como a fonte, cor de fundo e margens. O objetivo é criar uma aparência agradável e legível para o conteúdo da página. */
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            background-color: whitesmoke;
-            margin: 0px auto;
-            padding: 20px;  
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9f0f5;
+            margin: 0;
+            padding: 30px 20px;
+            color: #2c3e50;
         }
-        /*Aqui, estou definindo o estilo para os títulos (h1) da página, como a cor e o alinhamento. O objetivo é destacar os títulos e torná-los visualmente atraentes. */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
         h1 {
-            color: #333;
-            text-align: center;
+            color: #1a4b6d;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
         }
-      .container {
-        /*Aqui, estou definindo o estilo para um contêiner (container) que pode ser usado para agrupar elementos relacionados, como um formulário ou uma seção de conteúdo. O objetivo é criar um layout organizado e visualmente agradável para os elementos dentro do contêiner. */
-    background: linear-gradient(135deg, #667eea 0%, #efeef0 100%);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    margin-bottom: 20px;
-    color: white;
-}
-label {
-    /*Aqui, estou definindo o estilo para os rótulos (labels) dos campos de entrada, como a cor, tamanho da fonte e espaçamento. O objetivo é tornar os rótulos claros e fáceis de ler, além de criar uma hierarquia visual entre os elementos da página. */
-    display: block;              
-    margin-bottom: 5px;          
-    font-weight: 600;            
-    color: #333;                 
-    font-size: 14px;             
-    text-transform: uppercase;    
-    letter-spacing: 0.5px;
- }   
- /*Aqui, estou definindo o estilo para os campos de entrada (input) e áreas de texto (textarea), como a largura, preenchimento, borda e arredondamento. O objetivo é criar campos de entrada visualmente agradáveis e fáceis de usar para os usuários. */
- input[type="text"], 
+        h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        .form-grupo {
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .label-pequeno {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
         input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
         textarea {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px;
+            border: 1px solid #d0dbe8;
+            border-radius: 6px;
+            font-size: 15px;
             box-sizing: border-box;
+            transition: border 0.3s;
         }
-        /*Aqui, estou definindo o estilo para os botões (button), como a cor de fundo, cor do texto, preenchimento, borda e arredondamento. O objetivo é criar botões visualmente atraentes e fáceis de clicar para os usuários. Além disso, estou adicionando estilos de hover para melhorar a interatividade dos botões. */
-         button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            margin-top: 10px;
+        input:focus, select:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
         }
-        /*Aqui, estou definindo o estilo para os botões quando o usuário passa o mouse sobre eles (hover), como a cor de fundo. O objetivo é fornecer feedback visual aos usuários, indicando que o botão é interativo e pode ser clicado. */
-        button:hover {
-            background-color: #45a049;
+        .linha-dupla {
+            display: flex;
+            gap: 20px;
         }
-
-        button.secundario {
-            background-color: #2196F3;
+        .linha-dupla > div {
+            flex: 1;
         }
-        
-        button.secundario:hover {
-            background-color: #0b7dda;
-        }
-        
-        button.perigo {
-            background-color: #f44336;
-        }
-        
-        button.perigo:hover {
-            background-color: #da190b;
-        }
-        
-        /*Aqui, estou definindo o estilo para a tabela (table), como a largura, colapso de bordas e margem superior. O objetivo é criar uma tabela visualmente agradável e organizada para exibir os dados. */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin: 10px 0;
         }
-        
-        th, td {
-            border: 1px solid #ddd;
+        th {
+            background-color: #34495e;
+            color: white;
+            font-weight: 500;
             padding: 12px;
             text-align: left;
         }
-        
-        th {
-            background-color: #4CAF50;
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e7ef;
+        }
+        .campo-tabela input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .radio-option input {
+            width: auto;
+            margin: 0;
+        }
+        .endereco-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .botoes {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-inscrever {
+            background-color: #27ae60;
             color: white;
+            flex: 2;
+            min-width: 200px;
         }
-        
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .btn-inscrever:hover {
+            background-color: #219955;
+            transform: translateY(-2px);
         }
-        
-        tr:hover {
-            background-color: #ddd;
+        .btn-limpar {
+            background-color: #e74c3c;
+            color: white;
+            flex: 1;
         }
-        
-        /*Aqui, estou definindo o estilo para as áreas de texto (textarea), como a capacidade de redimensionamento e a altura mínima. O objetivo é permitir que os usuários redimensionem a área de texto conforme necessário, enquanto mantém uma altura mínima para garantir que haja espaço suficiente para digitar mensagens ou informações. */
-        textarea {
-            resize: vertical;
-            min-height: 100px;
+        .btn-limpar:hover {
+            background-color: #c0392b;
+        }
+        .btn-secundario {
+            background-color: #7f8c8d;
+            color: white;
+            flex: 1;
+        }
+        .btn-secundario:hover {
+            background-color: #6c7a7a;
+        }
+        .info-extra {
+            background-color: #ebf5fb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            border-left: 4px solid #3498db;
+        }
+        .info-extra h3 {
+            margin-top: 0;
+            color: #1a4b6d;
         }
     </style>
 </head>
 <body>
-  
-     <h1>Demonstração</h1>
-
-    <!-- SEÇÃO DO FORMULÁRIO -->
     <div class="container">
-        <h2>Formulário de Cadastro</h2>
-        <form id="meuFormulario">
-            <div>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+        <h1> Formulário de Inscrição - PWM</h1>
+        <p>Inscreva-se já nos nossos cursos profissionalizantes! Preencha o formulário abaixo para garantir sua vaga. Nossa equipe entrará em contato para confirmar a matrícula e informar os detalhes das turmas.</p>
+
+        <form id="formInscricao">
+            <!-- 1. NOME COMPLETO (TABELA com Primeiro Nome e Apelido) -->
+            <h2>1. Nome do candidato</h2>
+            <div class="form-grupo">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Primeiro Nome</th>
+                            <th>Apelido (Último nome)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="campo-tabela">
+                                <input type="text" id="primeiroNome" placeholder="Ex: Tripa" required>
+                            </td>
+                            <td class="campo-tabela">
+                                <input type="text" id="apelido" placeholder="Ex:Seca" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+            <!-- 2. NÚMERO DE TELEFONE -->
+            <h2>2. Contacto</h2>
+            <div class="form-grupo">
+                <label for="telefone">Número de telefone:</label>
+                <input type="tel" id="telefone" placeholder="(+258) 12 345 6789" required>
             </div>
-            
-            <div>
-                <label for="mensagem">Mensagem:</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem aqui..."></textarea>
+
+            <!-- 3. DATA DE NASCIMENTO -->
+            <div class="form-grupo">
+                <label for="nascimento">Data de nascimento:</label>
+                <input type="date" id="nascimento" required>
             </div>
-            
-            <!-- BOTÕES DO FORMULÁRIO -->
-            <button type="submit">Enviar Formulário</button>
-            <button type="reset" class="perigo">Limpar Formulário</button>
+
+            <!-- 4. E-MAIL -->
+            <div class="form-grupo">
+                <label for="email">Endereço de e-mail:</label>
+                <input type="email" id="email" placeholder="seu@email.com" required>
+            </div>
+
+            <!-- 5. CURSO DE INTERESSE (com opções) -->
+            <h2>3. Escolha do curso</h2>
+            <div class="form-grupo">
+                <label for="curso">Curso de interesse:</label>
+                <select id="curso" required>
+                    <option value="" disabled selected>-- Selecione um curso --</option>
+                    <option value="Engenharia Informática">Engenharia Informática</option>
+                    <option value="Medicina">Medicina</option>
+                    <option value="Direito">Direito</option>
+                    <option value="Design Gráfico">Design Gráfico</option>
+                    <option value="Marketing Digital">Marketing Digital</option>
+                    <option value="Administração">Administração de Empresas</option>
+                    <option value="Psicologia">Psicologia</option>
+                    <option value="Arquitetura">Arquitetura</option>
+                </select>
+            </div>
+
+            <!-- 6. MOTIVO DA INSCRIÇÃO (campo aberto) -->
+            <h2>4. Motivação</h2>
+            <div class="form-grupo">
+                <label for="motivo">Explique o motivo que te leva a se inscrever neste curso:</label>
+                <textarea id="motivo" rows="5" placeholder="Digite aqui suas razões, expectativas e objetivos..." required></textarea>
+            </div>
+
+            <!-- 7. PREFERÊNCIA DE HORÁRIO (opções) -->
+            <h2>5. Disponibilidade</h2>
+            <div class="form-grupo">
+                <label>Preferência de horário:</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="manha" name="horario" value="Manhã" required>
+                        <label for="manha">Manhã</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="tarde" name="horario" value="Tarde">
+                        <label for="tarde">Tarde</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="noite" name="horario" value="Noite">
+                        <label for="noite">Noite</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="qualquer" name="horario" value="Qualquer horário">
+                        <label for="qualquer">Qualquer horário</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. ENDEREÇO (QUARTEIRÃO, CASA, DISTRITO) -->
+            <h2>6. Endereço</h2>
+            <div class="form-grupo">
+                <div class="endereco-grid">
+                    <div>
+                        <label class="label-pequeno" for="quarteirao">Quarteirão</label>
+                        <input type="text" id="quarteirao" placeholder="Ex: Q. 10" required>
+                    </div>
+                    <div>
+                        <label class="label-pequeno" for="casa">Casa</label>
+                        <input type="text" id="casa" placeholder="Ex: Casa 5 ou Lt. 12" required>
+                    </div>
+                    <div>
+                        <label class="label-pequeno" for="distrito">Distrito</label>
+                        <input type="text" id="distrito" placeholder="Ex: Distrito kaMavota" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÕES DE AÇÃO -->
+            <div class="botoes">
+                <button type="submit" class="btn-inscrever"> Inscrever-se</button>
+                <button type="reset" class="btn-limpar"> Apagar tudo</button>
+                <button type="button" class="btn-secundario" id="btnPreencherExemplo">Preencher exemplo</button>
+            </div>
         </form>
-    </div>
-    
-    <!-- SEÇÃO DA TABELA -->
-    <div class="container">
-        <h2>Tabela de Exemplo</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>João Silva</td>
-                    <td>joao@email.com</td>
-                    <td>Ativo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Maria Santos</td>
-                    <td>maria@email.com</td>
-                    <td>Ativo</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Pedro Oliveira</td>
-                    <td>pedro@email.com</td>
-                    <td>Inativo</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Ana Costa</td>
-                    <td>ana@email.com</td>
-                    <td>Ativo</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
-    <!-- SEÇÃO DOS BOTÕES DE AÇÃO -->
-    <div class="container">
-        <h2>Botões de Ação</h2>
-        <button onclick="alert('Botão 1 clicado!')">Botão 1</button>
-        <button class="secundario" onclick="alert('Botão 2 clicado!')">Botão 2</button>
-        <button class="perigo" onclick="alert('Botão 3 clicado!')">Botão 3</button>
+        <!-- ÁREA DE INSCRITOS (TABELA GERAL) -->
+        <h2>Inscrições realizadas</h2>
+        <div style="overflow-x: auto;">
+            <table id="tabelaInscricoes">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Nascimento</th>
+                        <th>E-mail</th>
+                        <th>Curso</th>
+                        <th>Horário</th>
+                        <th>Distrito</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados serão inseridos via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top: 15px;">
+            <button id="btnLimparTabela" style="background-color: #95a5a6; color: white; padding: 10px 20px;"> Limpar todas inscrições</button>
+        </div>
 
-        <!-- CAIXA DE TEXTO ADICIONAL -->
-        <div style="margin-top: 20px;">
-            <label for="caixaTexto">Caixa de Texto Extra:</label>
-            <input type="text" id="caixaTexto" placeholder="Digite algo aqui...">
+        <!-- RODAPÉ EXPLICATIVO -->
+        <div class="info-extra">
+            <h3> Elementos incluídos:</h3>
+            <ul>
+                <li><strong>Tabela:</strong> Para primeiro nome/apelido e para listar inscrições</li>
+                <li><strong>Caixas de texto:</strong> Telefone, e-mail, quarteirão, casa, distrito</li>
+                <li><strong>Botões:</strong> Inscrever, Limpar, Exemplo, Limpar tabela</li>
+                <li><strong>Campos especiais:</strong> Data, seleção de curso, rádio (horário), textarea (motivo)</li>
+            </ul>
         </div>
     </div>
+
+    <script>
+        // Elementos do DOM
+        const form = document.getElementById('formInscricao');
+        const tabelaBody = document.querySelector('#tabelaInscricoes tbody');
+        const btnLimparTabela = document.getElementById('btnLimparTabela');
+        const btnExemplo = document.getElementById('btnPreencherExemplo');
+
+        // Carregar inscrições do localStorage
+        function carregarInscricoes() {
+            const inscricoes = JSON.parse(localStorage.getItem('inscricoesCompletas')) || [];
+            tabelaBody.innerHTML = '';
+            inscricoes.forEach((inscricao, index) => {
+                adicionarLinhaTabela(inscricao, index);
+            });
+        }
+
+        // Adicionar linha na tabela
+        function adicionarLinhaTabela(inscricao, index) {
+            const linha = document.createElement('tr');
+            const nomeCompleto = `${inscricao.primeiroNome} ${inscricao.apelido}`;
+            linha.innerHTML = `
+                <td>${nomeCompleto}</td>
+                <td>${inscricao.telefone}</td>
+                <td>${inscricao.nascimento}</td>
+                <td>${inscricao.email}</td>
+                <td>${inscricao.curso}</td>
+                <td>${inscricao.horario}</td>
+                <td>${inscricao.distrito || 'N/I'}</td>
+                <td>
+                    <button style="background-color:#f39c12; border:none; border-radius:4px; padding:5px 10px; margin:2px; cursor:pointer;" onclick="editarInscricao(${index})">✏️ Editar</button>
+                    <button style="background-color:#e74c3c; border:none; border-radius:4px; padding:5px 10px; margin:2px; cursor:pointer;" onclick="excluirInscricao(${index})">❌ Excluir</button>
+                </td>
+            `;
+            tabelaBody.appendChild(linha);
+        }
+
+        // Salvar lista no localStorage
+        function salvarInscricoes(inscricoes) {
+            localStorage.setItem('inscricoesCompletas', JSON.stringify(inscricoes));
+            carregarInscricoes();
+        }
+
+        // Evento de envio do formulário
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Recolher dados dos campos
+            const primeiroNome = document.getElementById('primeiroNome').value.trim();
+            const apelido = document.getElementById('apelido').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const nascimento = document.getElementById('nascimento').value;
+            const email = document.getElementById('email').value.trim();
+            const curso = document.getElementById('curso').value;
+            const motivo = document.getElementById('motivo').value.trim();
+            const horario = document.querySelector('input[name="horario"]:checked')?.value;
+            const quarteirao = document.getElementById('quarteirao').value.trim();
+            const casa = document.getElementById('casa').value.trim();
+            const distrito = document.getElementById('distrito').value.trim();
+
+            // Validações básicas
+            if (!primeiroNome || !apelido || !telefone || !nascimento || !email || !curso || !motivo || !horario || !quarteirao || !casa || !distrito) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Criar objeto da inscrição
+            const novaInscricao = {
+                primeiroNome,
+                apelido,
+                telefone,
+                nascimento,
+                email,
+                curso,
+                motivo,
+                horario,
+                quarteirao,
+                casa,
+                distrito
+            };
+
+            // Carregar lista existente e adicionar nova
+            const inscricoes = JSON.parse(localStorage.getItem('inscricoesCompletas')) || [];
+            inscricoes.push(novaInscricao);
+            salvarInscricoes(inscricoes);
+
+            // Limpar formulário
+            form.reset();
+            alert('Inscrição realizada com sucesso!');
+        });
+
+        // Funções de editar/excluir
+        window.editarInscricao = function(index) {
+            const inscricoes = JSON.parse(localStorage.getItem('inscricoesCompletas')) || [];
+            const ins = inscricoes[index];
+
+            // Preencher formulário com os dados
+            document.getElementById('primeiroNome').value = ins.primeiroNome;
+            document.getElementById('apelido').value = ins.apelido;
+            document.getElementById('telefone').value = ins.telefone;
+            document.getElementById('nascimento').value = ins.nascimento;
+            document.getElementById('email').value = ins.email;
+            document.getElementById('curso').value = ins.curso;
+            document.getElementById('motivo').value = ins.motivo;
+            
+            // Radio button
+            const radioHorario = document.querySelector(`input[name="horario"][value="${ins.horario}"]`);
+            if (radioHorario) radioHorario.checked = true;
+
+            // Endereço (quarteirão, casa, distrito)
+            document.getElementById('quarteirao').value = ins.quarteirao;
+            document.getElementById('casa').value = ins.casa;
+            document.getElementById('distrito').value = ins.distrito;
+
+            // Remover o antigo (será substituído ao salvar)
+            inscricoes.splice(index, 1);
+            salvarInscricoes(inscricoes);
+        };
+
+        window.excluirInscricao = function(index) {
+            if (confirm('Deseja excluir esta inscrição?')) {
+                const inscricoes = JSON.parse(localStorage.getItem('inscricoesCompletas')) || [];
+                inscricoes.splice(index, 1);
+                salvarInscricoes(inscricoes);
+            }
+        };
+
+        // Botão limpar toda a tabela
+        btnLimparTabela.addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja apagar TODAS as inscrições?')) {
+                localStorage.removeItem('inscricoesCompletas');
+                carregarInscricoes();
+            }
+        });
+
+        // Botão preencher exemplo (para teste)
+        btnExemplo.addEventListener('click', function() {
+            document.getElementById('primeiroNome').value = 'Albano';
+            document.getElementById('apelido').value = 'Gujamo';
+            document.getElementById('telefone').value = '(+258) 87 456 6249';
+            document.getElementById('nascimento').value = '2004-10-22';
+            document.getElementById('email').value = 'albano.gujamo007@email.com';
+            document.getElementById('curso').value = 'Engenharia Informática';
+            document.getElementById('motivo').value = 'Sempre tive interesse na área de tecnologia.';
+            document.querySelector('input[name="horario"][value="Noite"]').checked = true;
+            document.getElementById('quarteirao').value = 'Qd. 15';
+            document.getElementById('casa').value = 'Casa 08';
+            document.getElementById('distrito').value = 'Distrito kaMaxaquene';
+        });
+
+        // Inicializar
+        carregarInscricoes();
+    </script>
 </body>
 </html>
